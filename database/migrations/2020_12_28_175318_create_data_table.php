@@ -14,18 +14,18 @@ class CreateDataTable extends Migration
     public function up()
     {
         Schema::create('data', function (Blueprint $table) {
-            $table->integer('ZipCode')->primary();
-            $table->string('City');
-            $table->string('MixedCity');
-            $table->char('StateCode', '2');
-            $table->integer('StateFIPS');
-            $table->string('County');
-            $table->string('MixedCounty');
-            $table->integer('CountyFIPS');
-            $table->decimal('Latitude', '8', '6');
-            $table->decimal('Longitude', '9', '6');
-            $table->integer('GMT');
-            $table->char('DST', '1');
+            $table->integer('ZipCode')->primary()->unique();
+            $table->string('City')->nullable();
+            $table->string('MixedCity')->nullable();
+            $table->char('StateCode', '2')->nullable();
+            $table->integer('StateFIPS')->nullable();
+            $table->string('County')->nullable();
+            $table->string('MixedCounty')->nullable();
+            $table->integer('CountyFIPS')->nullable();
+            $table->decimal('Latitude', '8', '6')->nullable();
+            $table->decimal('Longitude', '9', '6')->nullable();
+            $table->integer('GMT')->nullable();
+            $table->char('DST', '1')->nullable();
             $table->timestamps();
         });
     }
