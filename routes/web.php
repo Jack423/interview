@@ -3,6 +3,7 @@
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,10 @@ use App\Http\Controllers\ExcelController;
 */
 Route::get('/', [PagesController::class, 'index']);
 Route::post('/import', [ExcelController::class, 'import'])->name('import');
-Route::get('/search', function () {
-    return 'Search Page';
-});
-Route::get('/advanced-search', function() {
-    return 'Advanced Search Page';
-});
+Route::get('/search', [SearchController::class, 'index']);
+Route::post('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/advanced-search', [SearchController::class, 'advancedSearchIndex']);
+Route::post('/advanced-search', [SearchController::class, 'advancedSearch'])->name('advanced-search');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

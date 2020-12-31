@@ -23,10 +23,6 @@
 
 <body>
   <div id="app" id="app">
-    <toast-success title="{{ session('success-title')??$successTitle??'' }}" message="{{ session('success-body')??$successBody??'' }} "></toast-success>
-    <toast-error title="{{ session('error-title')??$errorTitle??'' }}" message="{{ session('error-body')??$errorBody??'' }}" ></toast-error>
-    <toast-stack title="{{ session('stack-title')??$stackTitle??'' }}" body="{{ session('stack-body')??$stackBody??'' }}" ></toast-stack>
-
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
