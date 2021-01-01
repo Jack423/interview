@@ -19,7 +19,7 @@ Route::get('/', [PagesController::class, 'index']);
 Route::post('/import', [ExcelController::class, 'import'])->name('import');
 Route::get('/search', [SearchController::class, 'index']);
 Route::post('/search', [SearchController::class, 'search'])->name('search');
-Route::get('/advanced-search', [SearchController::class, 'advancedSearchIndex']);
+Route::get('/advanced-search', [SearchController::class, 'index']);
 Route::post('/advanced-search', [SearchController::class, 'advancedSearch'])->name('advanced-search');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

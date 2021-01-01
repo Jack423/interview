@@ -8,7 +8,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" name="inputCity" id="inputCity">
+                <input type="text" class="form-control" name="inputCity" id="inputCity" value="{{ old('inputCity') }}">
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">State</label>
@@ -69,7 +69,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" name="inputZipCode" id="inputZip">
+                <input type="text" class="form-control" name="inputZipCode" id="inputZip" value="{{ old('inputZipCode') }}">
             </div>
         </div>
         <div class="form-row">
@@ -119,7 +119,7 @@
             @endif
         </table>
         <div class="d-flex justify-content-center">
-            {!! $data->links() !!}
+            {!! $data->render() !!}
         </div>
     @else
         <table class="table table-striped table-bordered">
