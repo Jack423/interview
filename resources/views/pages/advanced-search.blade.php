@@ -24,7 +24,16 @@
         </div>
     </form>
     <br/>
-    @if($data ?? '')
-        <p>{{$data}}</p>
+    @if($data ?? [] && $data->count() > 0)
+        @foreach($data as $item)
+            <div class="card">
+                <div class="card-body">
+                    <p>Zip Code 1: {{ $item->zip_code1 }}</p>
+                    <p>Zip Code 2: {{ $item->zip_code2 }}</p>
+                    <p>Distance: {{ $item->distance }} Miles</p>
+                </div>
+            </div>
+            <br />
+        @endforeach
     @endif
 @endsection
