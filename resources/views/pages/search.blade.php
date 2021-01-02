@@ -119,7 +119,7 @@
             @endif
         </table>
         <div class="d-flex justify-content-center">
-            {!! $data->render() !!}
+            {!! $data->withQueryString()->links() !!}
         </div>
     @else
         <table class="table table-striped table-bordered">
