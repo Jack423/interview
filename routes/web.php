@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcelController;
@@ -21,6 +20,5 @@ Route::post('/import', [ExcelController::class, 'import'])->name('import');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/advanced-search', [SearchController::class, 'advancedSearchIndex']);
 Route::post('/advanced-search', [SearchController::class, 'advancedSearch'])->name('advanced-search');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();

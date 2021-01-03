@@ -3,7 +3,6 @@
 namespace App\Imports;
 
 use App\Models\Data;
-use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -11,13 +10,10 @@ class DataImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
-     *
      * @return Data
      */
     public function model(array $row): Data
     {
-        // Log::debug($row['city']);
-
         return new Data([
             'ZipCode' => intval($row['zipcode']),
             'City' => $row['city'],

@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('squares-spinner', require('./components/SwappingSquaresSpinner.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +30,34 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    mounted() {
+        this.enableInterceptor()
+    },
+    data: {
+        isLoading: false,
+        axiosInterceptor: null,
+    },
+    methods: {
+        enableInterceptor() {
+            this.axiosInterceptor = window.axios.interceptors.request.use((config) => {
+                this.isLoading = true;
+                return config;
+            }, error => {
+                this.isLoading = false;
+                return Promise.reject(error);
+            });
+
+            window.axios.interceptors.response.use(response => {
+                this.isLoading = false;
+                return response;
+            }, error => {
+                this.isLoading = false;
+                return Promise.reject(error);
+            })
+        },
+
+        disableInterceptor() {
+            window.axios.interceptors.request.eject(this.axiosInterceptor);
+        }
+    }
 });

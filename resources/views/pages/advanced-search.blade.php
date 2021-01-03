@@ -20,9 +20,19 @@
             </div>
         </div>
         <div class="form-row">
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" class="btn btn-primary" id="button-search">Search</button>
         </div>
     </form>
+    @if ($errors->any())
+        <br />
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <br/>
     @if($data ?? [] && $data->count() > 0)
         @foreach($data as $item)
@@ -35,5 +45,9 @@
             </div>
             <br />
         @endforeach
+    @else
+        <div class="alert alert-info">
+            No data found! Enter a zip code in the first box and zip codes separated by a comma in the second box along with a distance.
+        </div>
     @endif
 @endsection

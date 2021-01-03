@@ -3,13 +3,15 @@
 @section('content')
     <h1>{{$title}}</h1>
     <!-- Form -->
-    <form action="{{ route('search') }}" class="form-horizontal" method="POST">
+    <form action="{{ route('search') }}" class="form-horizontal" method="GET">
         {{ csrf_field() }}
         <div class="form-row">
+            <!-- City Input -->
             <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
                 <input type="text" class="form-control" name="inputCity" id="inputCity" value="{{ old('inputCity') }}">
             </div>
+            <!-- State Input -->
             <div class="form-group col-md-4">
                 <label for="inputState">State</label>
                 <select name="inputState" id="inputState" class="form-control">
@@ -67,6 +69,7 @@
                     <option value="WY">Wyoming</option>
                 </select>
             </div>
+            <!-- Zip Code Input -->
             <div class="form-group col-md-2">
                 <label for="inputZip">Zip</label>
                 <input type="text" class="form-control" name="inputZipCode" id="inputZip" value="{{ old('inputZipCode') }}">
@@ -77,6 +80,7 @@
         </div>
     </form>
     <br/>
+    <!-- Data display in table -->
     @if($data ?? [])
         <table class="table table-striped table-bordered">
             <thead>
@@ -93,6 +97,7 @@
                 <th scope="col">DST</th>
             </tr>
             </thead>
+            <!-- Make sure that we are only displaying data when we have it -->
             @if($data->count() > 0)
                 <tbody>
                 @foreach($data as $item)
@@ -111,6 +116,7 @@
                 @endforeach
                 </tbody>
             @else
+                <!-- If there was no data, tell the user there were no results found -->
                 <tbody>
                 <tr>
                     <td colspan="12">No data found</td>
@@ -118,10 +124,12 @@
                 </tbody>
             @endif
         </table>
+        <!-- Pagination links but with the previous search query -->
         <div class="d-flex justify-content-center">
             {!! $data->withQueryString()->links() !!}
         </div>
     @else
+        <!-- When the data variable doesn't exist, display that there was an issue getting the data -->
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -139,7 +147,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="12">No data found</td>
+                    <td colspan="12">Unable to get data</td>
                 </tr>
             </tbody>
         </table>
